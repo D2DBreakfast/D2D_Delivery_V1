@@ -21,4 +21,5 @@ class AdapterDeliveryScreen:RecyclerView.Adapter<AdapterDeliveryScreen.MyViewHol
     }
 
     class MyViewHolder(val binding: ItemRowDeliveryBinding) :RecyclerView.ViewHolder(binding.root)
+    /*check some  first comment*/
 }
