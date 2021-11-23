@@ -14,7 +14,35 @@
     <string name="delivery_summary">Delivery Summary</string>
     <string name="name_of_client">Name of Client </string>
     <string name="total_amount">Total Amount</string>
+    <string name="press_here_call_to_customer">Press Here Call to Customer</string>
+    <string name="press_here_call_to_manager">Press Here Call to Manage</string>
     <string name="inclusive_of_all_taxes">Inclusive of all taxes</string>
     <string name="confirm">Confirm</string>
+    <string name="search">Search</string>
+    <string name="pending_orders">Pending Orders</string>
+    <string name="order_number">Order No:</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="call">Call</string>
+    <string name="tv_label_verify_otp">OTP Verify</string>
+    <string name="completed">Completed</string>
+    <string name="pending">Pending</string>
+    <string name="confirm_delivery">Confirm Delivery</string>
+    <string name="completed_orders">Completed Orders</string>
+    <string name="delivered_orders">Deliver Orders</string>
+    <string name="login_shared_data">Login SharedPreference data</string>
+    <string name="placed_order_user_data">Placed Order user Data</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </resources>

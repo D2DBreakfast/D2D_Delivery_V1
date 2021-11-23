@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.utico.dawntodusk.delivery.R
 import com.utico.dawntodusk.delivery.view.fragment.DeliveryScreenFragment
+import com.utico.dawntodusk.delivery.view.fragment.MapsFragment
 
 class AddFragmentToActivity : AppCompatActivity() {
       var fragmentName:String? = null
@@ -16,6 +17,10 @@ class AddFragmentToActivity : AppCompatActivity() {
            supportFragmentManager!!.beginTransaction()
                .add(R.id.addFragmentContainer,DeliveryScreenFragment(),"DeliveryScreenFragment")
                .commit()
+        }else if(fragmentName.equals("MapsFragment")){
+            supportFragmentManager!!.beginTransaction()
+                .add(R.id.addFragmentContainer, MapsFragment(),"MapsFragment")
+                .commit()
         }
 
     }

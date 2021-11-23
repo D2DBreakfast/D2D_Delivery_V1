@@ -11,8 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
     <LinearLayout
         android:id="@+id/lnrTitle"
         android:layout_width="match_parent"
@@ -79,7 +77,7 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -88,12 +86,14 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/tvOrderNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right"
                     android:text="Order No: 186"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
                     android:textColor="@color/teal_200" />
             </LinearLayout>
 
@@ -101,12 +101,20 @@
                 android:id="@+id/lnrClientName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_below="@+id/lnrNameRow">
 
                 <TextView
+                    android:id="@+id/tvCallToCustomer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9535347309" />
+                    android:text="@string/press_here_call_to_customer"
+                    android:textColor="@color/green"
+                    android:gravity="center_vertical"
+                    android:drawableLeft="@drawable/ic_green_phone"
+                    android:background="@drawable/backgroung_rectangle_grey"
+                    android:padding="4dp"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -115,17 +123,34 @@
                 android:layout_below="@id/lnrClientName"
                 android:layout_marginTop="10dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/bannarimage" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delivery_address"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_green_home"
+                        android:text="1st main subhanna garden Vijayanagar Bengaluru 54001"
+                        />
+                </LinearLayout>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/profile" />
+                    android:id="@+id/imageViewGmap"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/googlemap" />
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
@@ -147,7 +172,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="34dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -165,8 +190,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/total_amount"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/tvInclusive"
@@ -193,15 +218,82 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="50dp"
                     android:layout_toRightOf="@+id/viewLine"
+                    android:text="AED.300"
                     android:textColor="@color/green"
-                    android:textSize="18sp"
-                    android:text="AED.30.49"/>
+                    android:textSize="18sp" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
+<!--
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewManagerPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewTotal"
+        app:cardMaxElevation="10dp"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tvCalltoManagerDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/press_here_to_call_manage_for_any_problem"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <View
+                android:id="@+id/viewLineCallManager"
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:background="@color/black"
+                android:layout_marginLeft="40dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tvCalltoManagerDesc"/>
+
+            <TextView
+                android:id="@+id/tvcall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:layout_toRightOf="@+id/viewLineCallManager"
+                android:textColor="@color/green"
+                android:textSize="18sp"
+                android:text="AED.30.49"/>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+-->
+
+        <TextView
+            android:id="@+id/tvCallToManager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/press_here_call_to_manager"
+            android:drawableLeft="@drawable/ic_green_phone"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonConfirm"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewTotal"
+            />
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buttonConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -210,8 +302,7 @@
         android:text="@string/confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewTotal"
+        app:layout_constraintTop_toBottomOf="@+id/tvCallToManager"
         />
-
-     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+     </ScrollView>
