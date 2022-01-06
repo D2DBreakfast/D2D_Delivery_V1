@@ -19,21 +19,22 @@ interface ApiService {
    @POST("verifyDeliveryBoyOtp")
     fun verifyOtp(
        @Field("mobileNo") mobileNo:String,
-       @Field("otp") otp:String
+       @Field("mobileOtp") mobileOtp:String
     ):Call<VerifyOTPResponseModel>
 
     @FormUrlEncoded
-    @POST("getDeliveryBoyPendingOrders")
+    @POST("fetchDeliveryOrderList")
     fun fetchFoodDeliveryPendingOrders(
-        @Field("deliveryBoyId") deliveryBoyId:String
-    ):Call<DeliveryPendingOrdersResponseModel>
+        @Field("deliveryBoyId") deliveryBoyId:String,
+        @Field("sectorId") sectorId:String
+        ):Call<DeliveryOrderListResponse>
 
     @FormUrlEncoded
-    @POST("userOrderDeliveryDetails")
+    @POST("fetchOrderItemDetails")
     fun fetchUserOrderDetails(
-        @Field("userId") userId:String
-    ): Call<UserItemOrderDetailsModel>
-
+        @Field("userId") userId:String,
+        @Field("orderId") orderId:String
+    ): Call<OrderDetailsResponseModel>
 
     @FormUrlEncoded
     @POST("confirmOrder")
@@ -41,4 +42,10 @@ interface ApiService {
      @Field("userId") userId:String,
      @Field("orderId") orderId:String
     ):Call<OrderConfirmResponse>
+
+    @FormUrlEncoded
+    @POST("deliveryOrderHistory")
+    fun orderHistory(
+    @Field("orderStatus") orderStatus:String
+    ):Call<OrderHistoryResponseModel>
 }

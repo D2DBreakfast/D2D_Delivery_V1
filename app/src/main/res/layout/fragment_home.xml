@@ -20,14 +20,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/edtSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/search"
-        android:background="@null"
-        android:drawableRight="@drawable/ic_green_search"
-        />
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1" />
     </LinearLayout>
 
 
@@ -40,7 +37,8 @@
         android:layout_marginEnd="8dp"
         android:padding="4dp"
         android:text="@string/pending_orders"
-        android:textColor="@color/green"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/red"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,13 +47,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:paddingBottom="?actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvShouldBeDelivered"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_row_home"
-        android:paddingBottom="50dp"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

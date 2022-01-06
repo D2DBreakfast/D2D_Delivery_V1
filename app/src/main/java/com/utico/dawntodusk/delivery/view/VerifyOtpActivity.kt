@@ -29,16 +29,18 @@ class VerifyOtpActivity : AppCompatActivity(){
         mobileNo = sharedPreferences.getString("mobileNo","")
         binding.verifyOtpModel = viewModel
         viewModel.mobileNo = mobileNo //Pass the Mobile Number to the Model Class
-        setUIClickEvent()
+        clickEvent()
     }
 
-    private fun setUIClickEvent(){
+    private fun clickEvent(){
         binding.buttonVerify.setOnClickListener {
             viewModel.verifyOtpObservable().observe(this, Observer<VerifyOTPResponseModel> {
-               if (it.statusCode == 200){
+               if (it.statusCode == 400){
+                   Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
+               }else{
                    Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
                    val intent = Intent(this,DashboardActivity::class.java)
-                       startActivity(intent)
+                   startActivity(intent)
                }
             })
             viewModel.verifyOtpApiCall()

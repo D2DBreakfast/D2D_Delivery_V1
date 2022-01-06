@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetroInstance {
   companion object {
-val baseUrl ="http://10.12.12.169:5000/deliveryboy/"
+val baseUrl ="http://10.12.12.66:3000/deliveryBoy/"
 
       fun getRetroInstance(): Retrofit{
          val logging = HttpLoggingInterceptor()

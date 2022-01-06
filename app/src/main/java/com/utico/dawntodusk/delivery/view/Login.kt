@@ -32,20 +32,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun setButtonClickEvent(){
                binding.buttonLogin.setOnClickListener {
-                   viewModel.loginObservable().observe(this, Observer<LoginResponseModel> {
-                     if (it.statusCode == 200){
-                         editor.putString("deliveryBoyId",it.otpData.deliveryBoyId)
-                         editor.putString("fullName",it.otpData.fullName)
-                         editor.putString("mobileNo",it.otpData.mobileNo)
-                         editor.putString("sector",it.otpData.sector)
-                         editor.putString("adminId",it.otpData.adminId)
-                         editor.putString("idProof",it.otpData.idProof)
-                         editor.putString("registerDate",it.otpData.registerDate)
-                         editor.putString("otp",it.otpData.mobileNoOtp)
+                       viewModel.loginObservable().observe(this, Observer<LoginResponseModel> {
+                     if (it.statusCode == 400){
+                         Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
+                     }else{
+                         editor.putString("deliveryBoyId",it.LoginData.deliveryBoyId)
+                         editor.putString("fullName",it.LoginData.fullName)
+                         editor.putString("mobileNo",it.LoginData.mobileNo)
+                         editor.putString("sectorId",it.LoginData.sectorId)
+                         editor.putString("adminId",it.LoginData.managerId)
+                         editor.putString("idProof",it.LoginData.idProof)
+                         editor.putString("registerDate",it.LoginData.registerDate)
+                         editor.putString("otp",it.LoginData.mobileOtp)
                          editor.commit()
-                         Toast.makeText(this,it.message +"OTP is "+it.otpData.mobileNoOtp,Toast.LENGTH_SHORT).show()
+                         Toast.makeText(this,it.message +"OTP is "+it.LoginData.mobileOtp,Toast.LENGTH_SHORT).show()
                          val intent = Intent(this,VerifyOtpActivity::class.java)
-                              startActivity(intent)
+                         startActivity(intent)
                      }
                    })
                    viewModel.loginApiCall()

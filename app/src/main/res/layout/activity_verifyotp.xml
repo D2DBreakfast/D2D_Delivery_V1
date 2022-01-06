@@ -15,7 +15,7 @@
         <RelativeLayout
             android:id="@+id/rltImage"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="240dp"
             android:background="@drawable/login_shape"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.508"
@@ -28,6 +28,7 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/dawntodusklogo" />
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/lnrTextRow"
                 android:layout_below="@+id/edit_profile_imageview"
                 android:layout_width="match_parent"
@@ -106,7 +107,7 @@
             app:otp_text_size="20dp"
             app:width="40dp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonVerify"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -115,6 +116,7 @@
             android:layout_marginEnd="16dp"
             android:backgroundTint="@color/green"
             android:text="@string/verify_otp"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

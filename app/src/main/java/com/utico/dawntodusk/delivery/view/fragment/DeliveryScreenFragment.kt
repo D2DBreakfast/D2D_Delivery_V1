@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.utico.dawntodusk.delivery.R
 import com.utico.dawntodusk.delivery.adapter.AdapterDeliveryScreen
 import com.utico.dawntodusk.delivery.databinding.DeliveryScreenFragmentBinding
-import com.utico.dawntodusk.delivery.model.UserItemOrderDetailsModel
+import com.utico.dawntodusk.delivery.model.OrderDetailsResponseModel
 import com.utico.dawntodusk.delivery.view.AddFragmentToActivity
 import com.utico.dawntodusk.delivery.viewmodel.DeliveryScreenViewModel
 
@@ -31,10 +31,12 @@ class DeliveryScreenFragment : Fragment() {
     private var managerContactNumber:String?  ="9535347309"
     private val REQUSET_PHONE_CALL=1
     private lateinit var viewModel: DeliveryScreenViewModel
-    private var userId:String? = null
+    private var userName:String? = null
     private var orderId:String? = null
-    private  var loginSharedPreferencesData: SharedPreferences? = null
+    private var addresses:String? = null
+    private  var totalAmount:String? = null
     private var orderPlacedSharedPreferencesData: SharedPreferences? = null
+    private var userId:String? = null
 
 
     companion object {
@@ -45,18 +47,29 @@ class DeliveryScreenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = DeliveryScreenFragmentBinding.inflate(inflater,container,false)
         viewModel = ViewModelProvider(this).get(DeliveryScreenViewModel::class.java)
         orderPlacedSharedPreferencesData = context?.getSharedPreferences(resources.getString(R.string.placed_order_user_data),Context.MODE_PRIVATE)
-        userId = orderPlacedSharedPreferencesData?.getString("userId","")
+        userName = orderPlacedSharedPreferencesData?.getString("userName","")
         orderId = orderPlacedSharedPreferencesData?.getString("orderId","")
-        customerContactNumber = orderPlacedSharedPreferencesData?.getString("phone","")
+        addresses = orderPlacedSharedPreferencesData?.getString("address","")
+        totalAmount = orderPlacedSharedPreferencesData?.getString("totalAmount","")
+        userId = orderPlacedSharedPreferencesData?.getString("userId","")
+        customerContactNumber = orderPlacedSharedPreferencesData?.getString("mobileNo","")
+
+        binding.tvName.text = userName
+        binding.tvOrderNumber.text ="Order No" +": " + orderId
+        binding.tvAddress.text = addresses
+        binding.tvCallToCustomer.text = customerContactNumber
+        binding.tvTotalPrice.text = "AED"+" "+totalAmount
+
 
         val view : View =binding.root
         checkPhonePermission()
         initAdapter()
         buttonClickEvent()
-        fetchUserOrderDetails()
+        fetchUserOrderDetails(userId!!,orderId!!)
         return  view
 
     }
@@ -109,17 +122,17 @@ class DeliveryScreenFragment : Fragment() {
         if (requestCode == REQUSET_PHONE_CALL)phoneCall()
     }
 
-    private fun fetchUserOrderDetails(){
+    private fun fetchUserOrderDetails(userid:String,orderid:String){
         Toast.makeText(context,userId,Toast.LENGTH_LONG).show()
-        viewModel.userItemOrderObservable().observe(viewLifecycleOwner, Observer<UserItemOrderDetailsModel> {
-        binding.tvName.text = it.userOrderDetails.userName
-        binding.tvOrderNumber.text ="Order No" +": " + it.userOrderDetails.orderId
-        binding.tvCallToCustomer.text = it.userOrderDetails.mobileNo
-        binding.tvAddress.text = it.userOrderDetails.deliveryAddress
-        adapterDeliveryScreen.userItemOrderList = it.userOrderDetails.userOrderItems.toMutableList()
-        adapterDeliveryScreen.notifyDataSetChanged()
+        viewModel.userItemOrderObservable().observe(viewLifecycleOwner, Observer<OrderDetailsResponseModel> {
+         if (it.statusCode==400){
+             Toast.makeText(context,it.message,Toast.LENGTH_LONG).show()
+         }else {
+             adapterDeliveryScreen.userItemOrderList = it.DeliveryOrderDetails.toMutableList()
+             adapterDeliveryScreen.notifyDataSetChanged()
+         }
       })
-      viewModel.apiCallUserItemOrders(userId!!)
+      viewModel.apiCallUserItemOrders(userid!!,orderid!!)
     }
 
 }
